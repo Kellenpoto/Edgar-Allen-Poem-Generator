@@ -92,7 +92,30 @@ def generate_poetry_words(seed_text, poetry_length, n_lines, model):
 
     seed_text = text[-1]
     text = ' '.join(text)
-    return text
+    print(text)
+    
+def generate_poetry_characters(seed_text, poetry_length, n_lines, model, char_indices):
+  for i in range(n_lines):
+    text = []
+    for _ in range(poetry_length):
+      seed = [char for char in seed_text]
+      encoded_seed = np.array([char_indices[char] for char in seed])
+      encoded = pad_sequences(encoded_seed, maxlen=100, padding='pre')
+
+      y_pred = np.argmax(model.predict(encoded), axis=-1)
+
+      predicted_character = ""
+      for character, index in char_indices.items():
+        if index == y_pred:
+          predicted_character = character
+          break
+
+      seed_text = seed_text + predicted_character
+      text.append(predicted_character)
+
+    seed_text = text[-1]
+    text = ''.join(text)
+    print(text)
 
 if __name__ == '__main__':
     data = load_text_data('../data/preprocessed_data.csv')
