@@ -99,10 +99,12 @@ def generate_poetry_characters(seed_text, poetry_length, n_lines, model, char_in
     text = []
     for _ in range(poetry_length):
       seed = [char for char in seed_text]
-      encoded_seed = np.array([char_indices[char] for char in seed])
-      encoded = pad_sequences(encoded_seed, maxlen=100, padding='pre')
+      encoded_seed = [char_indices[char] for char in seed]
+      if len(encoded_seed) < 100:
+        for j in range(99-len(encoded_seed)):
+          encoded_seed.insert(0,0)
 
-      y_pred = np.argmax(model.predict(encoded), axis=-1)
+      y_pred = np.argmax(model.predict([encoded_seed]), axis=-1)
 
       predicted_character = ""
       for character, index in char_indices.items():
