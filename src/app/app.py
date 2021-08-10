@@ -9,7 +9,7 @@ import src.utils as ut
 
 app = Flask(__name__) 
 model = ut.create_model(24775, 20)
-model.load_weights('../../models/epochs_100_to_200.h5')
+model.load_weights('models/epochs_100_to_200.h5')
 
 @app.route('/') # Homepage
 def home():
@@ -21,7 +21,7 @@ def predict():
     For rendering results on HTML GUI
     '''
     
-    texts = ut.load_text_data('../../data/preprocessed_data.csv')
+    texts = ut.load_text_data('data/preprocessed_data.csv')
     _ = ut.tokenize_texts(texts)
     seed_text = request.form['seed_text']
     seed_text_copy = seed_text
