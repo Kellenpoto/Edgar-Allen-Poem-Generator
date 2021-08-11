@@ -10,7 +10,7 @@ In his early career as a journalist, Edgar Allan Poe wrote an article discussing
 ## Exploring the Data
 The dataset was composed of [70 short stories](https://www.kaggle.com/leangab/poe-short-stories-corpuscsv) from Edgar Allan Poe. I began exploring the data by creating a bar graph of word counts to make note of which words were used most commonly by Poe. Poe's vocabulary is notoriously arcane and dark, however his most commonly used words tend to be more general ones. 
 <p align="center">
-  <img width="475", src="images/word_counts.png"> <img width='475' src='images/character_count.png'>
+  <img width="425", src="images/word_counts.png"> <img width='425' src='images/character_count.png'>
 </p>
 While this graph highlights a large disparity in word usage, it also helps us set a baseline expectation for model performance. With a total word count of 24,775 unique words, a baseline model that simply predicts the most common word, "the", would be correct 7.3% of the time. Given that there are only 103 unique characters, predicting the most common character, " ", every time would result in 17.9% accuracy. Although we will be focusing on accuracy more as we move forward, it is important to realize that generating believable poetry may be just as good of a result metric, although not as measurable.
 
@@ -26,7 +26,7 @@ Since natural language is a very structured form of communication which relies h
 
 The first model created was a simple word based LSTM model. This model had an embedding layer, a single LSTM layer, and an output layer. Later improvements on this model added dropout two dropout layers and decreased the learning rate from .01 to .001 in order to combat overfitting. Despite these efforts, the model is still overfit and will require further tuning. Increasing the dropout rate from 5% to 20% per layer also did not improve the model's ability to generalize. The character model using the same architecture achieved an acuracy much higher than the baseline and showed signs of steady improvement. I think that this character model shows more promise, but takes much longer to train.
 
-<p align='center'><img width="475" src='images/word_model_accuracy.png'> <img width="475" src='images/character_model_accuracy.png'</p>
+<p align='center'><img width="425" src='images/word_model_accuracy.png'> <img width="425" src='images/character_model_accuracy.png'</p>
    
 
 ## Model Evaluation
