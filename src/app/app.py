@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 import tensorflow.keras as keras
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-import sys, os
+import sys
 sys.path.append("/home/kellen/Documents/DSI_Galvanize/Edgar-Allen-Poem-Generator/")
 import src.utils as ut
 
